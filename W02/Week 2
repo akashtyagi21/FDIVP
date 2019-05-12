@@ -1,0 +1,33 @@
+I am providing the code for question 7 and 8 written in MATLAB. The code is given below-
+clc % clear the screen
+clear % clear the workspace
+close all; % close all the figures
+%% Question 7
+%% Following the steps as given in the question 7
+a=imread('lena.gif'); % read the image
+imshow(a) % showing an image (OPTIONAL)
+b=double(a); %  converting an image to double
+A=1/9*ones(3); % creating a 3-by-3 low pass filter with 1/9 as all its coefficients
+I=imfilter(b,A,'replicate'); % using imfilter as indicated in the question
+I_1=uint8(I); % again converting it to uint8 (OPTIONAL)
+figure % opening a new figure (OPTIONAL)
+imshow(I_1) % displaying an filtered image (OPTIONAL)
+%% Calculating the Mean Square Error (MSE)
+mse_error=immse(b,I); % calculating the MSE error using "immse" in-built MATLAB function
+max_i=255; % maximum possible pixel value of an image
+%% Calculating PSNR according to the given equation in the question
+a_1=((max_i^2)/(mse_error));
+PSNR=10*log10(a_1);
+str=['The value of PSNR for Question 7 is ' , num2str(PSNR)];
+disp(str)
+%% Question 8
+%% Follow the same steps as for the above, only you have to replace the line 9 of code with the line givven below and rest is same
+B=1/25*ones(5);
+I_2=imfilter(b,B,'replicate'); % using imfilter as indicated in the question
+%% Calculating the Mean Square Error (MSE)
+mse_error_1=immse(b,I_2); % calculating the MSE error using "immse" in-built MATLAB function
+%% Calculating PSNR according to the given equation in the question
+a_2=((max_i^2)/(mse_error_1));
+PSNR_1=10*log10(a_2);
+str_1=['The value of PSNR for Question 8 is ' , num2str(PSNR_1)];
+disp(str_1)
